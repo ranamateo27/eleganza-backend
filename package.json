@@ -1,0 +1,71 @@
+{
+  "name": "eleganza_back",
+  "description": "",
+  "version": "0.0.0",
+  "homepage": "",
+  "private": true,
+  "keywords": [
+    "feathers"
+  ],
+  "author": {},
+  "contributors": [],
+  "bugs": {},
+  "engines": {
+    "node": ">= 24.14.0"
+  },
+  "feathers": {
+    "language": "js",
+    "packager": "npm",
+    "database": "mysql",
+    "framework": "express",
+    "transports": [
+      "rest",
+      "websockets"
+    ],
+    "schema": false
+  },
+  "directories": {
+    "lib": "src",
+    "test": "test"
+  },
+  "main": "lib/index",
+  "type": "module",
+  "scripts": {
+    "start": "node src",
+    "dev": "nodemon src/",
+    "prettier": "npx prettier \"**/*.js\" --write",
+    "mocha": "cross-env NODE_ENV=test mocha test/ --recursive --exit",
+    "test": "cross-env NODE_ENV=test npm run migrate && npm run mocha",
+    "bundle:client": "npm pack --pack-destination ./public",
+    "migrate": "knex migrate:latest",
+    "migrate:make": "knex migrate:make -x mjs"
+  },
+  "dependencies": {
+    "@feathersjs/adapter-commons": "^5.0.44",
+    "@feathersjs/authentication": "^5.0.44",
+    "@feathersjs/authentication-client": "^5.0.44",
+    "@feathersjs/authentication-local": "^5.0.44",
+    "@feathersjs/authentication-oauth": "^5.0.44",
+    "@feathersjs/configuration": "^5.0.44",
+    "@feathersjs/errors": "^5.0.44",
+    "@feathersjs/express": "^5.0.44",
+    "@feathersjs/feathers": "^5.0.44",
+    "@feathersjs/knex": "^5.0.44",
+    "@feathersjs/schema": "^5.0.44",
+    "@feathersjs/socketio": "^5.0.44",
+    "@feathersjs/transport-commons": "^5.0.44",
+    "compression": "^1.8.1",
+    "knex": "^3.2.8",
+    "mysql2": "^3.20.0",
+    "winston": "^3.19.0"
+  },
+  "devDependencies": {
+    "@feathersjs/cli": "^5.0.44",
+    "@feathersjs/rest-client": "^5.0.44",
+    "axios": "^1.14.0",
+    "cross-env": "^10.1.0",
+    "mocha": "^11.7.5",
+    "nodemon": "^3.1.14",
+    "prettier": "^3.8.1"
+  }
+}
