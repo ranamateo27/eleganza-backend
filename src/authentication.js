@@ -15,11 +15,15 @@ export const authentication = app => {
     after: {
       create: [
         (context) => {
+          // Si el usuario ya está en el resultado (por config de Feathers), no hacemos nada
+          if (context.result.user) return context
+
           // Si la autenticación fue exitosa, el usuario debería estar en context.params.user
           if (context.params.user) {
             context.result.user = context.params.user
-          } else {
-            console.warn('⚠️ CUIDADO: No se encontró el usuario en context.params.user para poblar la respuesta.')
+          } else if (context.params.authStrategy === 'local') {
+            // Solo advertimos si es estrategia local y falta el usuario
+            console.warn('AVISO: No se encontró el usuario en params para la respuesta de auth.')
           }
           return context
         }
